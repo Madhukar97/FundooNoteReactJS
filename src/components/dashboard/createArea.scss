@@ -1,0 +1,30 @@
+.CreateArea {
+  position: relative;
+  width: 600px;
+  margin: 32px auto 50px auto;
+  background: white;
+  padding: 7px;
+  border-radius: 7px;
+  box-shadow: 0 1px 7px rgb(134, 134, 134);
+
+  input {
+    width: 96%;
+    border: none;
+    padding: 4px 10px;
+    margin-bottom: 20px;
+    outline: none;
+    font-size: 1rem;
+    resize: none;
+  }
+
+  textarea {
+    width: 96%;
+    border: none;
+    padding: 4px 10px;
+    margin-bottom: 20px;
+    outline: none;
+    font-size: 1rem;
+    resize: none;
+  }
+}
+
