@@ -1,0 +1,11 @@
+.notes-container{
+    margin-right: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    //border: 2px solid rgb(185, 185, 185);
+    
+    .noteItem{
+        height: 100px;
+    }
+}

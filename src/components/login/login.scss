@@ -1,0 +1,152 @@
+.container {
+  background-color: rgb(255, 255, 255);
+	padding-top: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	@media (max-width: 777px){
+		padding-top: 0px;
+	}
+}
+
+.card {
+  border: 1px solid rgb(216, 216, 216);
+	display: flex;
+	flex-direction: row;
+	box-shadow: 1px 1px 15px rgb(149, 149, 149);
+	border-radius: 8px;
+
+	@media (min-width: 777px){
+		width: 65%;
+		height: 70%;
+	}
+
+	@media (min-width: 1400px){
+		width: 45%;
+		height: 70%;
+	}
+
+	@media (max-width: 777px){
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.leftContainer{
+
+	@media (min-width: 1401px){
+		width: 50%;
+		padding: 30px 50px 70px 50px;
+	}
+
+	@media (max-width: 1401px){
+		width: 100%;
+		padding: 10px 20px 20px 20px;
+	}
+
+	@media (max-width: 777px){
+		width: 100%;
+	}
+}
+
+.leftContainer h2{
+	color: rgb(0, 0, 0);
+	font-weight: lighter;
+	font-size: x-large;
+	font-family: sans-serif;
+	padding-bottom: 30px;
+}
+
+.rightContainer{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	@media (min-width: 1401px){
+		width: 50%;
+	}
+
+	@media (max-width: 1401px) {
+		img{
+			width: 0;
+			height: 0;
+		}
+
+		p{
+			display: none;
+		}
+
+		width: 0%;
+
+  }
+}
+
+.rightContainer p {
+	font-size: 16px;
+	font-weight: 300;
+	width: 60%;
+	text-align: center;
+}
+
+.row{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+	padding: 0px 10px 30px 0px;
+}
+
+.row-pass{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+	padding: 0px 0px 5px 0px;
+}
+
+.helperpass{
+	font-family: sans-serif;
+	padding-left: 15px;
+	font-size: 11.9px;
+	color: rgb(105, 105, 105);
+	
+}
+
+.login-input{
+	width: 48%;
+}
+
+.login-pass{
+	width: 100%;
+}
+
+.username {
+	width: 100%;
+}
+
+.signup-button{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 50px;
+}
+
+.signup-button button{
+	height: 40px;
+	width: 80px;
+	border: none;
+	border-color: rgb(47, 116, 243);
+}
+
+.signup-button button:hover{
+	background-color: rgb(0, 81, 255);
+	color: white;
+	font-weight: bold;
+}
+
+.signup-button a{
+	font-size: small;
+}

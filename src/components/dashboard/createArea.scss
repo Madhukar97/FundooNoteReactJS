@@ -1,0 +1,66 @@
+.CreateArea {
+  position: relative;
+  width: 600px;
+  margin: 0px auto 30px auto;
+  background: white;
+  padding: 7px;
+  border-radius: 7px;
+  box-shadow: 0 1px 7px rgb(134, 134, 134);
+
+  .title {
+    width: 100%;
+    border: none;
+    padding: 4px 10px;
+    margin-top: 5px;
+    outline: none;
+    font-size: 1rem;
+    resize: none;
+    font-weight: bold;
+    
+  }
+
+  textarea {
+    width: 100%;
+    border: none;
+    padding: 4px 10px;
+    outline: none;
+    font-size: small;
+    resize: vertical;
+    resize: none;
+    font-family: sans-serif;
+  }
+
+}
+
+.title-div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .icon-button{
+    padding: 0 10px;
+  }
+}
+
+.create-note-buttons{
+  display: flex;
+
+  .create-note-button{
+    padding: 0 15px;
+    color: rgb(85, 85, 85);
+  }
+
+  .add-button{
+    margin-left: auto;
+    border: none;
+    cursor: pointer;
+    width: 70px;
+    height: 30px;
+    background: white;
+    border-radius: 3px;
+    font-size: 15px;
+  }
+  .add-button:hover{
+    background-color: rgb(219, 219, 219);
+  }
+}
