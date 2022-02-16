@@ -24,7 +24,7 @@ const Home = (props) => {
 		});
 	}
 
-	useEffect(getNotes);
+	useEffect(getNotes,[notes]);
 
   return (
 		<>

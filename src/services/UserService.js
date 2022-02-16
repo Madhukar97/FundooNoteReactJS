@@ -64,7 +64,7 @@ export class UserServices{
     let data={
       title: note.title,
       content: note.content,
-      color: 'white'
+      color: note.color
     }
     let token = localStorage.getItem('fundooUserToken');
     return (
