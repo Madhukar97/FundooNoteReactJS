@@ -50,6 +50,7 @@ function PopNote(props) {
         .updateNote(props.id, note)
         .then(function (response) {
           console.log(response);
+          props.getNotes();
         })
         .catch(function (error) {
           console.log(error);

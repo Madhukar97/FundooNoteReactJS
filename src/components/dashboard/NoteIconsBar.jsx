@@ -11,22 +11,51 @@ function NoteIconsBar(props) {
 	let noteService = new NoteServices();
 	
 	let deleteNote = (event) => {
-    noteService.deleteNote(props.id)
-      .then(function (response) {
-        console.log(response);
-				
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+
+   let updatedNote = {
+			title: props.title,
+    	content: props.content,
+    	id: props.id,
+			color: props.color,
+      archived: props.archived,
+      inTrash: true
+		}
+
+    noteService.updateNote(props.id,updatedNote).then(function (response) {
+			console.log(response);
+      props.getNotes();
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
   };
+
+  let archiveNote = (event) => {
+    let updatedNote = {
+			title: props.title,
+    	content: props.content,
+    	id: props.id,
+			color: props.color,
+      archived: !(props.archived),
+      inTrash: props.inTrash
+		}
+
+    noteService.updateNote(props.id,updatedNote).then(function (response) {
+			console.log(response);
+      props.getNotes();
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+  }
 
 	let setNoteColor = (event) => {
 		let updatedNote = {
 			title: props.title,
     	content: props.content,
     	id: props.id,
-			color: event.target.id
+			color: event.target.id,
+      archived: props.archived
 		}
 		updateNote(props.id, updatedNote);
 	}
@@ -34,6 +63,7 @@ function NoteIconsBar(props) {
 	let updateNote = (a,b) => {
 		noteService.updateNote(a,b).then(function (response) {
 			console.log(response);
+      props.getNotes();
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -86,7 +116,7 @@ function NoteIconsBar(props) {
 				</Typography>
       	</Popover>
 
-				<IconButton className="create-note-button">
+				<IconButton className="create-note-button" onClick={archiveNote}>
             <ArchiveOutlined fontSize="small"/>
         </IconButton>
 				<IconButton className="create-note-button">

@@ -24,7 +24,11 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import "../dashboard/Dashboard.scss";
 import { RefreshOutlined } from "@material-ui/icons";
 import { LogoutOutlined, SearchOutlined, SettingsAccessibilityOutlined, SettingsOutlined, ViewAgendaOutlined } from "@mui/icons-material";
+import { Route, Routes, useNavigate } from "react-router";
 import Notes from "./Notes";
+import Archive from "../dashboard/Archive"
+import Trash from "../dashboard/Trash"
+
 
 const drawerWidth = 240;
 
@@ -123,6 +127,25 @@ export default function MiniDrawer() {
     setOpen(!open);
   };
 
+  const navigate = useNavigate();
+
+  const changeRoute = (route) => {
+    switch (route) {
+      case 'Archive':
+        navigate('archive')
+        break;
+      case 'Notes':
+        navigate('')
+        break;
+      case 'Bin':
+        navigate('trash')
+        break;
+      default:
+        navigate('')
+        break;
+    }
+  }
+
   return (
     <Box sx={{ display: "flex" }} >
       <CssBaseline />
@@ -176,7 +199,7 @@ export default function MiniDrawer() {
         <Divider />
         <List>
           {menuList.map((item) => (
-            <ListItem button key={item.text}>
+            <ListItem button key={item.text} onClick={() => changeRoute(item.text)}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItem>
@@ -185,7 +208,11 @@ export default function MiniDrawer() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Notes></Notes>
+        <Routes>
+          <Route path="archive" element={<Archive />} />
+          <Route path="trash" element={<Trash />} />
+          <Route path="" element={<Notes />} />
+        </Routes>
       </Box>
     </Box>
   );

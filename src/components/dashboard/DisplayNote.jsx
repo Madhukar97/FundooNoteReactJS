@@ -1,4 +1,4 @@
-import { DeleteOutlined, ColorLensOutlined } from "@mui/icons-material";
+import { DeleteOutlined, ColorLensOutlined, Note } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import { color, display } from "@mui/system";
 import React, { useState } from "react";
@@ -25,10 +25,12 @@ function DisplayNote(props) {
 
   const handleClickOpen = () => {
     setOpen(true);
+    props.getNotes();
   };
 
   const handleClose = (value) => {
     setOpen(false);
+    props.getNotes();
   };
 
 
@@ -39,10 +41,10 @@ function DisplayNote(props) {
 				<h1>{props.title}</h1>
 				<p>{props.content}</p>
 			</div>
-			<NoteIconsBar id={props.id} color={props.color} title={props.title} content={props.content} />
+			<NoteIconsBar id={props.id} color={props.color} title={props.title} content={props.content} getNotes={props.getNotes} archived={props.archived} inTrash={props.inTrash}/>
     </div>
 		<Dialog onClose={handleClose} open={open} >
-			<PopNote id={props.id} color={props.color} title={props.title} content={props.content} close={handleClose}/>
+			<PopNote id={props.id} color={props.color} title={props.title} content={props.content} close={handleClose} getNotes={props.getNotes} archived={props.archived} inTrash={props.inTrash}/>
 		</Dialog>
 	</>
   );

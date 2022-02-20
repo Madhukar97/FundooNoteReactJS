@@ -22,14 +22,17 @@ const Notes = (props) => {
 		});
 	}
 
-	useEffect(() => {getNotes()});
+	useEffect(() => {getNotes()},[])
 
   return (
 		<>
 		<CreateNote getNotes={getNotes} />
 		<div className="notes-container">
 		{notes.notesArray.length > 0 && notes.notesArray.map((note, index) => (
-			<DisplayNote className="noteItem" key={index} id={note.id} color={note.color} title={note.title} content={note.content} />
+			(note.archived || note.inTrash)?
+			<div key={index}></div>
+			:
+			<DisplayNote className="noteItem" key={index} id={note.id} color={note.color} title={note.title} content={note.content} archived={note.archived} inTrash={note.inTrash} getNotes={getNotes}/>
 		))}
 		</div>
 		</>
