@@ -24,18 +24,17 @@ const Home = (props) => {
 		});
 	}
 
-	useEffect(getNotes,[notes]);
+	useEffect(() => {getNotes()});
 
   return (
 		<>
-		<CreateArea />
+		<CreateArea getNotes={getNotes} />
 		<div className="notes-container">
 		{notes.notesArray.length > 0 && notes.notesArray.map((note, index) => (
-			<Note className="noteItem" key={index} id={note.id} color={note.color} title={note.title} content={note.content} getNotes={getNotes}/>
+			<Note className="noteItem" key={index} id={note.id} color={note.color} title={note.title} content={note.content} />
 		))}
 		</div>
 		</>
 	);
 };
-
 export default Home;

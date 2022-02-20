@@ -42,6 +42,7 @@ function CreateArea(props) {
     
     userService.addNote(note).then(function (response) {
       console.log(response);
+      props.getNotes();
     })
     .catch(function (error) {
       console.log(error);
@@ -54,6 +55,7 @@ function CreateArea(props) {
     }))
     console.log(props);
     }
+    
   }
 
 	const [anchorEl, setAnchorEl] = React.useState(null);

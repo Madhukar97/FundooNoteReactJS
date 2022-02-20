@@ -34,6 +34,7 @@ function Note(props) {
     setOpen(false);
   };
 
+
   return (
 		<>
 		<div className="note" style={{backgroundColor:props.color}} >

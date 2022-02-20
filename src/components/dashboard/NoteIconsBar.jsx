@@ -14,6 +14,7 @@ function NoteIconsBar(props) {
     userService.deleteNote(props.id)
       .then(function (response) {
         console.log(response);
+				
       })
       .catch(function (error) {
         console.log(error);
