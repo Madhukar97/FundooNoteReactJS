@@ -28,7 +28,7 @@ function Trash(props) {
       <div className="notes-container">
 				{notes.notesArray.length > 0 && notes.notesArray.map((note, index) => (
             note.inTrash?
-						<DisplayNote className="noteItem" key={index} id={note.id} color={note.color} title={note.title} content={note.content} />
+						<DisplayNote className="noteItem" key={index} id={note.id} color={note.color} title={note.title} content={note.content} archived={note.archived} inTrash={note.inTrash} getNotes={getNotes}/>
             :
             <div key={index}></div>
 				))}

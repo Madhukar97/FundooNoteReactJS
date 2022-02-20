@@ -18,7 +18,7 @@ function NoteIconsBar(props) {
     	id: props.id,
 			color: props.color,
       archived: props.archived,
-      inTrash: true
+      inTrash: !(props.inTrash)
 		}
 
     noteService.updateNote(props.id,updatedNote).then(function (response) {
