@@ -4,9 +4,9 @@ import React, { Component, useState } from "react";
 import { UserServices } from "../../services/UserService";
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import "./createArea.scss";
+import "./createNote.scss";
 
-function CreateArea(props) {
+function CreateNote (props) {
   let userService = new UserServices();
 
   let [note, setNote] = useState({
@@ -182,4 +182,4 @@ function CreateArea(props) {
   );
 }
 
-export default CreateArea;
+export default CreateNote;

@@ -4,9 +4,6 @@ import './App.css';
 import Register from "./components/login/Register"
 import Login from './components/login/Login';
 import ResetPass from './components/login/ResetPass';
-import Header from './components/dashboard/Header';
-import CreateArea from './components/dashboard/CreateArea';
-import Home from './components/dashboard/Home';
 import MiniDrawer from './components/dashboard/Dashboard';
 
 function App() {

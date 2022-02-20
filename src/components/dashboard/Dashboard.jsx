@@ -24,7 +24,7 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import "../dashboard/Header.scss";
 import { RefreshOutlined } from "@material-ui/icons";
 import { LogoutOutlined, SearchOutlined, SettingsAccessibilityOutlined, SettingsOutlined, ViewAgendaOutlined } from "@mui/icons-material";
-import Home from "./Home";
+import Notes from "./Notes";
 
 const drawerWidth = 240;
 
@@ -185,7 +185,7 @@ export default function MiniDrawer() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Home></Home>
+        <Notes></Notes>
       </Box>
     </Box>
   );

@@ -1,12 +1,10 @@
 import React, { Component, useState, useEffect } from "react";
-import Header from "./Header";
-import CreateArea from "./CreateArea"
-import MiniDrawer from "./Dashboard";
-import Note from "./Note";
-import "../dashboard/Home.scss"
+import CreateNote from "./CreateNote"
+import DisplayNote from "./DisplayNote";
+import "../dashboard/Notes.scss"
 import { UserServices } from "../../services/UserService";
 
-const Home = (props) => {
+const Notes = (props) => {
 
 	let userService = new UserServices();
 
@@ -28,13 +26,13 @@ const Home = (props) => {
 
   return (
 		<>
-		<CreateArea getNotes={getNotes} />
+		<CreateNote getNotes={getNotes} />
 		<div className="notes-container">
 		{notes.notesArray.length > 0 && notes.notesArray.map((note, index) => (
-			<Note className="noteItem" key={index} id={note.id} color={note.color} title={note.title} content={note.content} />
+			<DisplayNote className="noteItem" key={index} id={note.id} color={note.color} title={note.title} content={note.content} />
 		))}
 		</div>
 		</>
 	);
 };
-export default Home;
+export default Notes;

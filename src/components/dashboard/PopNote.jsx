@@ -13,8 +13,8 @@ import {
 import { IconButton, TextareaAutosize } from "@mui/material";
 import React, { Component, useState } from "react";
 import { UserServices } from "../../services/UserService";
-import "./createArea.scss";
-import "../dashboard/PopNote.scss";
+import "./createNote.scss";
+import "./PopNote.scss";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 

@@ -2,12 +2,11 @@ import { DeleteOutlined, ColorLensOutlined } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import { color, display } from "@mui/system";
 import React, { useState } from "react";
-import "../dashboard/Note.scss";
+import "../dashboard/DisplayNote.scss";
 import { UserServices } from "../../services/UserService";
 import PropTypes from 'prop-types';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
-import CreateArea from "./CreateArea";
 import PopNote from "./PopNote";
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
@@ -21,7 +20,7 @@ Dialog.propTypes = {
   open: PropTypes.bool.isRequired,
 };
 
-function Note(props) {
+function DisplayNote(props) {
   let userService = new UserServices();
 
 	const [open, setOpen] = React.useState(false);
@@ -51,4 +50,4 @@ function Note(props) {
   );
 }
 
-export default Note;
+export default DisplayNote;
