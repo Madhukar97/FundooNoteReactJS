@@ -21,7 +21,7 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import "../dashboard/Header.scss";
+import "../dashboard/Dashboard.scss";
 import { RefreshOutlined } from "@material-ui/icons";
 import { LogoutOutlined, SearchOutlined, SettingsAccessibilityOutlined, SettingsOutlined, ViewAgendaOutlined } from "@mui/icons-material";
 import Notes from "./Notes";
