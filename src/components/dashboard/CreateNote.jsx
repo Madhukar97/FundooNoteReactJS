@@ -4,7 +4,7 @@ import React, { Component, useState } from "react";
 import { UserServices } from "../../services/UserService";
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import "./createNote.scss";
+import "./CreateNote.scss";
 
 function CreateNote (props) {
   let userService = new UserServices();
