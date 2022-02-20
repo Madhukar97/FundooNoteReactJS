@@ -1,13 +1,13 @@
 import { AddAlertOutlined, ArchiveOutlined, BrushOutlined, CheckBoxOutlined, ColorLensOutlined, ImageOutlined, MoreVertOutlined, PersonAddAlt, PersonAddAltOutlined, PushPinOutlined } from "@mui/icons-material";
 import { IconButton, TextareaAutosize } from "@mui/material";
 import React, { Component, useState } from "react";
-import { UserServices } from "../../services/UserService";
+import { NoteServices } from "../../services/NoteService";
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import "./CreateNote.scss";
 
 function CreateNote (props) {
-  let userService = new UserServices();
+  let noteService = new NoteServices();
 
   let [note, setNote] = useState({
     title: "",
@@ -40,7 +40,7 @@ function CreateNote (props) {
     event.preventDefault();
     if(note.title!=='' || note.content!==''){
     
-    userService.addNote(note).then(function (response) {
+    noteService.addNote(note).then(function (response) {
       console.log(response);
       props.getNotes();
     })

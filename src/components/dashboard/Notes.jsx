@@ -2,18 +2,18 @@ import React, { Component, useState, useEffect } from "react";
 import CreateNote from "./CreateNote"
 import DisplayNote from "./DisplayNote";
 import "../dashboard/Notes.scss"
-import { UserServices } from "../../services/UserService";
+import { NoteServices } from "../../services/NoteService";
 
 const Notes = (props) => {
 
-	let userService = new UserServices();
+	let noteService = new NoteServices();
 
 	let [notes, setNotes] = useState({
 		notesArray: []
 	});
 
 	let getNotes = () => {
-		userService.getAllNotes().then(function (response){
+		noteService.getAllNotes().then(function (response){
 			setNotes(() => ({
 				notesArray: response.data
 			}))

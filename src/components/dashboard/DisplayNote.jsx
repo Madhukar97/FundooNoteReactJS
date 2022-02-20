@@ -3,7 +3,6 @@ import { IconButton } from "@mui/material";
 import { color, display } from "@mui/system";
 import React, { useState } from "react";
 import "../dashboard/DisplayNote.scss";
-import { UserServices } from "../../services/UserService";
 import PropTypes from 'prop-types';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
@@ -21,7 +20,6 @@ Dialog.propTypes = {
 };
 
 function DisplayNote(props) {
-  let userService = new UserServices();
 
 	const [open, setOpen] = React.useState(false);
 

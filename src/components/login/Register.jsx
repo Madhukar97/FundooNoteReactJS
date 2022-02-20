@@ -6,9 +6,11 @@ import {
 } from "@mui/material";
 import React, { Component, useState } from "react";
 import "../login/login.scss";
-import { createUser } from "../../services/UserService";
+import { UserServices } from "../../services/UserService";
 
 const Register = () => {
+
+  let userService = new UserServices();
 
   let [registerState, setRegisterState] = useState({
     firstName: "",
@@ -41,7 +43,7 @@ const Register = () => {
   };
 
   let signUp = (event) => {
-    createUser(registerState);
+    userService.register(registerState);
     console.log("submitted form");
   };
 

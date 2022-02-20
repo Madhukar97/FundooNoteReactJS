@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import { UserServices } from "../../services/UserService";
+import { NoteServices } from "../../services/NoteService";
 import { DeleteOutlined, AddAlertOutlined, ArchiveOutlined, BrushOutlined, CheckBoxOutlined, ColorLensOutlined, ImageOutlined, MoreVertOutlined, PersonAddAlt, PersonAddAltOutlined, PushPinOutlined } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 
 
 function NoteIconsBar(props) {
 
-	let userService = new UserServices();
+	let noteService = new NoteServices();
 	
 	let deleteNote = (event) => {
-    userService.deleteNote(props.id)
+    noteService.deleteNote(props.id)
       .then(function (response) {
         console.log(response);
 				
@@ -32,7 +32,7 @@ function NoteIconsBar(props) {
 	}
 
 	let updateNote = (a,b) => {
-		userService.updateNote(a,b).then(function (response) {
+		noteService.updateNote(a,b).then(function (response) {
 			console.log(response);
 		})
 		.catch(function (error) {

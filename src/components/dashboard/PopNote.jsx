@@ -12,14 +12,14 @@ import {
 } from "@mui/icons-material";
 import { IconButton, TextareaAutosize } from "@mui/material";
 import React, { Component, useState } from "react";
-import { UserServices } from "../../services/UserService";
+import { NoteServices } from "../../services/NoteService";
 import "./CreateNote.scss";
 import "./PopNote.scss";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 
 function PopNote(props) {
-  let userService = new UserServices();
+  let noteServices = new NoteServices();
 
   let [note, setNote] = useState({
     title: props.title,
@@ -46,7 +46,7 @@ function PopNote(props) {
     event.preventDefault();
     props.close();
     if (note.title !== "" || note.content !== "") {
-      userService
+      noteServices
         .updateNote(props.id, note)
         .then(function (response) {
           console.log(response);
