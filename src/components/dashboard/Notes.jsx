@@ -6,6 +6,7 @@ import { NoteServices } from "../../services/NoteService";
 
 const Notes = (props) => {
 
+
 	let noteService = new NoteServices();
 
 	let [notes, setNotes] = useState({

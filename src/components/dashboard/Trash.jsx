@@ -25,6 +25,8 @@ function Trash(props) {
 	
   return(
     <>
+			<h2>Trash</h2>
+			<hr />
       <div className="notes-container">
 				{notes.notesArray.length > 0 && notes.notesArray.map((note, index) => (
             note.inTrash?

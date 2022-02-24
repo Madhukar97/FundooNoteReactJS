@@ -55,7 +55,8 @@ function NoteIconsBar(props) {
     	content: props.content,
     	id: props.id,
 			color: event.target.id,
-      archived: props.archived
+      archived: props.archived,
+      inTrash: props.inTrash
 		}
 		updateNote(props.id, updatedNote);
 	}
