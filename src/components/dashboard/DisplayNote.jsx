@@ -41,10 +41,10 @@ function DisplayNote(props) {
 				<h1>{props.title}</h1>
 				<p>{props.content}</p>
 			</div>
-			<NoteIconsBar id={props.id} color={props.color} title={props.title} content={props.content} getNotes={props.getNotes} archived={props.archived} inTrash={props.inTrash}/>
+			<NoteIconsBar id={props.id} color={props.color} title={props.title} content={props.content} getNotes={props.getNotes} archived={props.archived} inTrash={props.inTrash} reminder={props.reminder}/>
     </div>
 		<Dialog onClose={handleClose} open={open} >
-			<PopNote id={props.id} color={props.color} title={props.title} content={props.content} close={handleClose} getNotes={props.getNotes} archived={props.archived} inTrash={props.inTrash}/>
+			<PopNote id={props.id} color={props.color} title={props.title} content={props.content} close={handleClose} getNotes={props.getNotes} archived={props.archived} inTrash={props.inTrash} reminder={props.reminder}/>
 		</Dialog>
 	</>
   );

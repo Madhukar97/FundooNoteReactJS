@@ -33,7 +33,7 @@ const Notes = (props) => {
 			(note.archived || note.inTrash)?
 			<div key={index}></div>
 			:
-			<DisplayNote className="noteItem" key={index} id={note.id} color={note.color} title={note.title} content={note.content} archived={note.archived} inTrash={note.inTrash} getNotes={getNotes}/>
+			<DisplayNote className="noteItem" key={index} id={note.id} color={note.color} title={note.title} content={note.content} archived={note.archived} inTrash={note.inTrash} reminder={note.reminder} getNotes={getNotes}/>
 		))}
 		</div>
 		</>

@@ -4,6 +4,11 @@ import Typography from '@mui/material/Typography';
 import { NoteServices } from "../../services/NoteService";
 import { DeleteOutlined, AddAlertOutlined, ArchiveOutlined, BrushOutlined, CheckBoxOutlined, ColorLensOutlined, ImageOutlined, MoreVertOutlined, PersonAddAlt, PersonAddAltOutlined, PushPinOutlined } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateTimePicker from '@mui/lab/DateTimePicker';
+import { display } from "@mui/system";
 
 
 function NoteIconsBar(props) {
@@ -18,7 +23,8 @@ function NoteIconsBar(props) {
     	id: props.id,
 			color: props.color,
       archived: props.archived,
-      inTrash: !(props.inTrash)
+      inTrash: !(props.inTrash),
+			reminder: props.reminder
 		}
 
     noteService.updateNote(props.id,updatedNote).then(function (response) {
@@ -37,7 +43,8 @@ function NoteIconsBar(props) {
     	id: props.id,
 			color: props.color,
       archived: !(props.archived),
-      inTrash: props.inTrash
+      inTrash: props.inTrash,
+			reminder: props.reminder
 		}
 
     noteService.updateNote(props.id,updatedNote).then(function (response) {
@@ -56,13 +63,34 @@ function NoteIconsBar(props) {
     	id: props.id,
 			color: event.target.id,
       archived: props.archived,
-      inTrash: props.inTrash
+      inTrash: props.inTrash,
+			reminder: props.reminder
 		}
 		updateNote(props.id, updatedNote);
 	}
 
 	let updateNote = (a,b) => {
 		noteService.updateNote(a,b).then(function (response) {
+			console.log(response);
+      props.getNotes();
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+	}
+
+	let setReminder = (newDateValue) => {
+		let updatedNote = {
+			title: props.title,
+    	content: props.content,
+    	id: props.id,
+			color: props.color,
+      archived: props.archived,
+      inTrash: props.inTrash,
+			reminder: newDateValue
+		}
+
+    noteService.updateNote(props.id,updatedNote).then(function (response) {
 			console.log(response);
       props.getNotes();
 		})
@@ -84,13 +112,34 @@ function NoteIconsBar(props) {
   const openColorPallet = Boolean(anchorEl);
   const id = openColorPallet ? 'simple-popover' : undefined;
 
+	const [anchorE2, setAnchorE2] = React.useState(null);
+
+  const handleReminderClick = (event) => {
+    setAnchorE2(event.currentTarget);
+  };
+
+  const handleReminderClose = () => {
+    setAnchorE2(null);
+  };
+
+  const openReminder = Boolean(anchorE2);
+  const idReminder = openReminder ? 'simple-popover' : undefined;
+
+	const [DateValue, setDateValue] = React.useState(props.reminder? props.reminder: new Date());
+
+  const handleDateChange = (newDateValue) => {
+    setDateValue(newDateValue);
+		setReminder(newDateValue);
+
+  };
+
   return(
 		<div style={{ display: "flex", flexDirection: "row-reverse" }}>
         <IconButton onClick={deleteNote}>
           <DeleteOutlined></DeleteOutlined>
         </IconButton>
 				<IconButton aria-describedby={id} variant="contained" onClick={handleClick}>
-            <ColorLensOutlined fontSize="small"/>
+          <ColorLensOutlined fontSize="small"/>
         </IconButton>
 				<Popover
         id={id}
@@ -101,7 +150,7 @@ function NoteIconsBar(props) {
           vertical: 'bottom',
           horizontal: 'left',
         }}
-      >
+      	>
         <Typography component={'span'} style={{display:'flex',flexDirection:'row',padding:'8px'}}>
 					<div id="#ffff7e" onClick={setNoteColor} style={{width:'30px',height:'30px',border:'1px solid grey',borderRadius:'100%',boxShadow:'0 2px 3px #ffff7e', backgroundColor:'#ffff7e', margin:'0 2px', cursor:'pointer'}}></div>
 					<div id="#E6E6FA" onClick={setNoteColor} style={{width:'30px',height:'30px',border:'1px solid grey',borderRadius:'100%',boxShadow:'0 2px 3px #E6E6FA', backgroundColor:'#E6E6FA', margin:'0 2px', cursor:'pointer'}}></div>
@@ -126,12 +175,32 @@ function NoteIconsBar(props) {
 				<IconButton className="create-note-button">
             <PersonAddAltOutlined fontSize="small"/>
         </IconButton>
-				<IconButton className="create-note-button">
+				<IconButton className="create-note-button" variant="contained" onClick={handleReminderClick}>
             <AddAlertOutlined fontSize="small"/>
         </IconButton>
+				<Popover
+        id={idReminder}
+        open={openReminder}
+        anchorEl={anchorE2}
+        onClose={handleReminderClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+      	>
+				<LocalizationProvider dateAdapter={AdapterDateFns}>
+					<div style={{padding:"5px", display:"flex",flexDirection:"column"}}>
+					<small>Select Date and Time</small>
+					<DateTimePicker
+          value={DateValue}
+          onChange={handleDateChange}
+          renderInput={(params) => <TextField {...params} />}
+        	/>
+					</div>
+    		</LocalizationProvider>
+      	</Popover>
       </div>
 	);
-
 }
 
 export default NoteIconsBar;
