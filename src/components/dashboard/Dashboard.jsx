@@ -23,12 +23,22 @@ import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import "../dashboard/Dashboard.scss";
 import { RefreshOutlined } from "@material-ui/icons";
-import { LogoutOutlined, SearchOutlined, SettingsAccessibilityOutlined, SettingsOutlined, ViewAgendaOutlined } from "@mui/icons-material";
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import {
+  LogoutOutlined,
+  SearchOutlined,
+  SettingsAccessibilityOutlined,
+  SettingsOutlined,
+  ViewAgendaOutlined,
+} from "@mui/icons-material";
 import { Route, Routes, useNavigate } from "react-router";
 import Notes from "./Notes";
-import Archive from "../dashboard/Archive"
-import Trash from "../dashboard/Trash"
+import Archive from "../dashboard/Archive";
+import Trash from "../dashboard/Trash";
+import { NoteServices } from "../../services/NoteService";
 
+let noteService = new NoteServices();
 
 const drawerWidth = 240;
 
@@ -131,35 +141,43 @@ export default function MiniDrawer() {
 
   const changeRoute = (route) => {
     switch (route) {
-      case 'Archive':
-        navigate('archive')
+      case "Archive":
+        navigate("archive");
         break;
-      case 'Notes':
-        navigate('')
+      case "Notes":
+        navigate("");
         break;
-      case 'Bin':
-        navigate('trash')
+      case "Bin":
+        navigate("trash");
         break;
       default:
-        navigate('')
+        navigate("");
         break;
     }
+  };
+
+  const noteKeywords = [{title: "demo"},{title: "sherlock"}];
+
+  let [query, setQuery] = React.useState("")
+
+  let searchTheNotes = (event) => {
+    setQuery(event.target.value);
   }
 
   return (
-    <Box sx={{ display: "flex" }} >
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open} color="inherit" className="app-bar">
         <Toolbar>
-          <div className="header" >
+          <div className="header">
             <IconButton
-              style={{width:"30px", padding:"0px 25px", height:"30px"}}
+              style={{ width: "30px", padding: "0px 25px", height: "30px" }}
               color="inherit"
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               edge="start"
             >
-              <MenuIcon className="menu-button"/>
+              <MenuIcon className="menu-button" />
             </IconButton>
             <img
               src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"
@@ -168,28 +186,32 @@ export default function MiniDrawer() {
               width={"40px"}
             />
             <h4>Fundo</h4>
-            <IconButton className="search-button">
-              <SearchOutlined ></SearchOutlined>
-            </IconButton>
-            <input
-              className="searchbar"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            ></input>
+            <div>
+            <Autocomplete
+              className="searchinput"
+              id="free-solo-demo"
+              freeSolo
+              options={noteKeywords.map((option) => option.title)}
+              renderInput={(params) => (
+                <TextField {...params} placeholder="search" onChange={searchTheNotes}/>
+              )}
+            />
+            </div>
             <div className="header-icons">
-            <IconButton className="icon-button">
-              <RefreshOutlined />
-            </IconButton>
-            <IconButton className="icon-button">
-              <ViewAgendaOutlined/>
-            </IconButton>
-            <IconButton className="icon-button">
-              <SettingsOutlined/>
-            </IconButton>
-            <a href="/login" className="logout-link">
-              <button className="btn0 logout"><LogoutOutlined/></button>
-            </a>
+              <IconButton className="icon-button">
+                <RefreshOutlined />
+              </IconButton>
+              <IconButton className="icon-button">
+                <ViewAgendaOutlined />
+              </IconButton>
+              <IconButton className="icon-button">
+                <SettingsOutlined />
+              </IconButton>
+              <a href="/login" className="logout-link">
+                <button className="btn0 logout">
+                  <LogoutOutlined />
+                </button>
+              </a>
             </div>
           </div>
         </Toolbar>
@@ -199,7 +221,11 @@ export default function MiniDrawer() {
         <Divider />
         <List>
           {menuList.map((item) => (
-            <ListItem button key={item.text} onClick={() => changeRoute(item.text)}>
+            <ListItem
+              button
+              key={item.text}
+              onClick={() => changeRoute(item.text)}
+            >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItem>
@@ -211,7 +237,7 @@ export default function MiniDrawer() {
         <Routes>
           <Route path="archive" element={<Archive />} />
           <Route path="trash" element={<Trash />} />
-          <Route path="" element={<Notes />} />
+          <Route path="" element={<Notes query = {query}/>} />
         </Routes>
       </Box>
     </Box>

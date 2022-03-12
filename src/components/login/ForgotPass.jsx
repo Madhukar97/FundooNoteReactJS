@@ -7,49 +7,37 @@ import {
 } from "@mui/material";
 import { UserServices } from "../../services/UserService";
 
-const ResetPass = () => {
+const ForgotPass = () => {
+
   let userService = new UserServices();
 
-  let [resetpassState, setResetPassState] = useState({
-    newPassword: "",
-    confirmNewPassword: ""
+  let [forgotPassState, setForgotPassState] = useState({
+    email: ""
   });
 
   const onChangeHandler = (event) => {
-    setResetPassState(() => ({
-      ...resetpassState,
+    setForgotPassState(() => ({
+      ...forgotPassState,
       [event.target.name]: event.target.value,
     }));
   };
 
-  let [state, setState] = useState({
-    type: "password",
-  });
+  let [msg, setMsg] = useState("");
 
-  const showpass = (event) => {
-    let check = event.target.checked;
-    console.log(check);
-    if (check) {
-      setState({
-        type: "text",
-      });
-    } else {
-      setState({
-        type: "password",
-      });
-    }
-  };
-
-  let submitNewPass = (event) => {
-    userService.resetPass(resetpassState.newPassword).then(res => {
+  let onSubmit = (event) => {
+    event.preventDefault();
+    setMsg("Email has been sent! Please check your in-box for reset password link.");
+    userService.forgotPass(forgotPassState.email).then(res => {
+      localStorage.setItem("resetPassToken", res.data);
       console.log(res.data);
     }).catch(err => {
       console.log(err);
     });
   }
+
   return (
     <>
-      <pre>{JSON.stringify(resetpassState)}</pre>
+      <pre>{JSON.stringify(forgotPassState)}</pre>
       <div className="container">
         <div className="card">
           <div className="leftContainer">
@@ -64,46 +52,25 @@ const ResetPass = () => {
               </h1>
             </div>
             <div className="msg">
-              <h2>Reset your password</h2>
+              <h2>Enter your email to send reset password link</h2>
             </div>
-            <form action="/login" onSubmit={submitNewPass}>
+            <form action="" onSubmit={onSubmit}>
               <div className="row">
                 <TextField
-                  name="newPassword"
+                  name="email"
                   id="outlined-basic"
-                  label="Enter New Password"
+                  label="email"
                   size="small"
                   variant="outlined"
                   fullWidth
                   required
-                  type={state.type}
                   onChange={onChangeHandler}
+                  helperText={msg}
                 />
-              </div>
-              <div className="row-pass">
-                <div className="login-pass">
-                  <TextField
-                    name="confirmNewPassword"
-                    id="outlined-basic"
-                    label="Confirm New Password"
-                    size="small"
-                    variant="outlined"
-                    fullWidth
-                    required
-                    type={state.type}
-                    onChange={onChangeHandler}
-                  />
-                </div>
-              </div>
-              <div className="showpass">
-                <FormControlLabel
-                  control={<Checkbox onChange={showpass} />}
-                  label={"show password"}
-                ></FormControlLabel>
               </div>
               <div className="signup-button">
                 <a href="/login">
-                  <button className="btn btn--primary">Reset Password</button>
+                  <button className="btn btn--primary">Send Link</button>
                 </a>
               </div>
             </form>
@@ -123,4 +90,4 @@ const ResetPass = () => {
   );
 };
 
-export default ResetPass;
+export default ForgotPass;

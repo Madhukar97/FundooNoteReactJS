@@ -23,40 +23,15 @@ export class UserServices{
     this.axiosService.post(baseURL+'user_login','',userData));
   }
 
-  addNote (note) {
-    let data={
-      title: note.title,
-      content: note.content,
-      color: note.color
-    }
-    let token = localStorage.getItem('fundooUserToken');
+  forgotPass (email) {
     return (
-      this.axiosService.post(baseURL+'users/saveNote/',{token},data)
-    )
+      this.axiosService.post(baseURL+"forgotPass/"+email,'',''));
   }
 
-  getAllNotes() {
-    let token = localStorage.getItem('fundooUserToken');
-    return(
-      this.axiosService.get(baseURL+'users/',{token},'')
-    )
+  resetPass (password) {
+    let token =localStorage.getItem("resetPassToken");
+    return (
+      this.axiosService.put(baseURL+"resetpassword/"+password,{token},''));
   }
-
-  deleteNote(id) {
-    console.log(id)
-    return(
-    this.axiosService.delete(baseURL+'users/'+id,'','')
-    )
-  }
-
-  updateNote(id, note){
-    console.log(id)
-    let token = localStorage.getItem('fundooUserToken');
-    return(
-    this.axiosService.put(baseURL+'users/',{token},note)
-    )
-  }
-
-
 }
 

@@ -24,6 +24,7 @@ const Register = () => {
       ...registerState,
       [event.target.name]: event.target.value,
     }));
+    console.log(event.target.value);
   };
 
   let [state, setState] = React.useState({
@@ -43,7 +44,13 @@ const Register = () => {
   };
 
   let signUp = (event) => {
-    userService.register(registerState);
+    event.preventDefault();
+    console.log(registerState);
+    userService.register(registerState).then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    });
     console.log("submitted form");
   };
 

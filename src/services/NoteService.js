@@ -41,6 +41,12 @@ export class NoteServices{
     )
   }
 
+  searchNotes(query){
+    let token = localStorage.getItem('fundooUserToken');
+    return(
+      this.axiosService.get(baseURL+"note/search/"+query,{token},'')
+    )
+  }
 
 }
 

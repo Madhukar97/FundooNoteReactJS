@@ -14,16 +14,29 @@ const Notes = (props) => {
 	});
 
 	let getNotes = () => {
-		noteService.getAllNotes().then(function (response){
+		if( props.query === ""){
+			noteService.getAllNotes().then(response => {
+				setNotes(() => ({
+					notesArray: response.data
+				}))
+				console.log(response);
+			}).catch(function (error) {
+				console.log(error);
+			});
+		}
+		else {
+		noteService.searchNotes(props.query).then(function (response){
 			setNotes(() => ({
 				notesArray: response.data
 			}))
+			console.log(response);
 		}).catch(function (error) {
 			console.log(error);
 		});
+		}
 	}
 
-	useEffect(() => {getNotes()},[])
+	useEffect(() => {getNotes()},[props.query])
 
   return (
 		<>
