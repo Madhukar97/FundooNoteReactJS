@@ -155,8 +155,19 @@ export default function MiniDrawer() {
         break;
     }
   };
+  
+  let [noteTitles, setNoteTitles] = React.useState([]);
 
-  const noteKeywords = [{title: "demo"},{title: "sherlock"}];
+  let getTitles = () => {
+    noteService.getAllNotes().then(response => {
+        setNoteTitles(response.data)
+      console.log(response);
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  
 
   let [query, setQuery] = React.useState("")
 
@@ -191,9 +202,9 @@ export default function MiniDrawer() {
               className="searchinput"
               id="free-solo-demo"
               freeSolo
-              options={noteKeywords.map((option) => option.title)}
+              options={noteTitles.map((option) => option.title)}
               renderInput={(params) => (
-                <TextField {...params} placeholder="search" onChange={searchTheNotes}/>
+                <TextField {...params} placeholder="search" onChange={searchTheNotes} onClick={getTitles}/>
               )}
             />
             </div>
