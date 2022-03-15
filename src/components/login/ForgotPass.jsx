@@ -28,7 +28,6 @@ const ForgotPass = () => {
     event.preventDefault();
     setMsg("Email has been sent! Please check your in-box for reset password link.");
     userService.forgotPass(forgotPassState.email).then(res => {
-      localStorage.setItem("resetPassToken", res.data);
       console.log(res.data);
     }).catch(err => {
       console.log(err);

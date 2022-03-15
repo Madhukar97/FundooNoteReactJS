@@ -28,8 +28,7 @@ export class UserServices{
       this.axiosService.post(baseURL+"forgotPass/"+email,'',''));
   }
 
-  resetPass (password) {
-    let token =localStorage.getItem("resetPassToken");
+  resetPass (password, token) {
     return (
       this.axiosService.put(baseURL+"resetpassword/"+password,{token},''));
   }

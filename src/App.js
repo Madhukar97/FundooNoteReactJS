@@ -17,7 +17,7 @@ function App() {
       <Route path="" element={<Register/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/forgotpass"element={<ForgotPass/>}/>
-      <Route path='/resetpass' element={<ResetPass/>}/>
+      <Route path='/resetpass/:token' element={<ResetPass/>}/>
       <Route path="/home/*" element={<MiniDrawer/>}>
         <Route path='archive' element={<Archive />} />
         <Route path='trash' element={<Trash />} />

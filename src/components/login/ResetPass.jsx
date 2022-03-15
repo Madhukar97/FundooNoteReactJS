@@ -1,4 +1,5 @@
 import React, { Component, useState } from "react";
+import { useParams } from "react-router-dom";
 import {
   Checkbox,
   checkboxClasses,
@@ -9,6 +10,7 @@ import { UserServices } from "../../services/UserService";
 
 const ResetPass = () => {
   let userService = new UserServices();
+  let {token} = useParams();
 
   let [resetpassState, setResetPassState] = useState({
     newPassword: "",
@@ -41,12 +43,13 @@ const ResetPass = () => {
   };
 
   let submitNewPass = (event) => {
-    userService.resetPass(resetpassState.newPassword).then(res => {
+    userService.resetPass(resetpassState.newPassword, token).then(res => {
       console.log(res.data);
     }).catch(err => {
       console.log(err);
     });
   }
+
   return (
     <>
       <pre>{JSON.stringify(resetpassState)}</pre>
