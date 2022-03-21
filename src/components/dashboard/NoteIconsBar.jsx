@@ -38,13 +38,13 @@ function NoteIconsBar(props) {
 
   let archiveNote = (event) => {
     let updatedNote = {
-			title: props.title,
+		title: props.title,
     	content: props.content,
     	id: props.id,
-			color: props.color,
-      archived: !(props.archived),
-      inTrash: props.inTrash,
-			reminder: props.reminder
+		color: props.color,
+        archived: !(props.archived),
+        inTrash: props.inTrash,
+		reminder: props.reminder
 		}
 
     noteService.updateNote(props.id,updatedNote).then(function (response) {
@@ -58,13 +58,13 @@ function NoteIconsBar(props) {
 
 	let setNoteColor = (event) => {
 		let updatedNote = {
-			title: props.title,
+		title: props.title,
     	content: props.content,
     	id: props.id,
-			color: event.target.id,
-      archived: props.archived,
-      inTrash: props.inTrash,
-			reminder: props.reminder
+		color: event.target.id,
+        archived: props.archived,
+        inTrash: props.inTrash,
+		reminder: props.reminder
 		}
 		updateNote(props.id, updatedNote);
 	}

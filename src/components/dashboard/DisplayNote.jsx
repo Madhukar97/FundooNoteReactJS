@@ -13,7 +13,6 @@ import Button from '@mui/material/Button';
 import { useEffect } from "react";
 import NoteIconsBar from "./NoteIconsBar";
 
-
 Dialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
