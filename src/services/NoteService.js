@@ -1,6 +1,6 @@
 import AxiosService from '../services/AxiosService';
 
-const baseURL = "http://localhost:8080/"
+const baseURL = "http://localhost:8083/notemicroservice/"
 
 export class NoteServices{
   constructor(){}
