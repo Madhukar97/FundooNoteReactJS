@@ -130,14 +130,24 @@ const menuList = [
 ];
 
 export default function MiniDrawer() {
+
+  let navigate = useNavigate();
+
+  let userInfo = localStorage.getItem("fundooUserToken")
+
+  React.useEffect(() => {
+    if (!userInfo){
+     navigate("/login")   
+    }
+},[])
+
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(!open);
   };
-
-  const navigate = useNavigate();
 
   const changeRoute = (route) => {
     switch (route) {

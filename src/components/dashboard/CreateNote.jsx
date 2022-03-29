@@ -83,7 +83,6 @@ function CreateNote (props) {
             name="title"
             type="text"
             placeholder="Title"
-            name="title"
             value={note.title}
             onChange={onChangeHandler}
             style={{backgroundColor:note.color}}
@@ -159,7 +158,6 @@ function CreateNote (props) {
             name="title"
             type="text"
             placeholder="Take a note..."
-            name="title"
             value={note.title}
             onChange={onChangeHandler}
             onClick={onClick}
